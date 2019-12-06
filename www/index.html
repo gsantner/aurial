@@ -1,0 +1,80 @@
+<html lang="en">
+<head>
+	<title>Aurial (Subsonic)</title>
+
+<script>
+if (!localStorage.getItem("gregsetup")) {
+					localStorage.setItem("notifications", "true");
+					localStorage.setItem("backgroundArt", "true");
+					localStorage.setItem("persistQueue", "true");
+					localStorage.setItem("gregsetup", "true");
+}
+</script>
+	<meta charset="utf-8" />
+
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript" src="semantic.min.js"></script>
+	<link rel="stylesheet" href="semantic.min.css">
+
+	<link rel="icon" type="image/png" href="css/favicon.png">
+	<link rel="stylesheet" href="css/default.css">
+
+
+</head>
+<body>
+<script type="text/javascript" src="index.js"></script>
+
+
+<style>
+.bottomaction {
+  position: fixed;
+    bottom: 16px;
+    left: 16px;
+    border-radius: 5px;
+    font-size: 3rem;
+  }
+  #botload { left: 66px; }
+  #botrand { left: 120px; }
+  #botplay { left: 180px;  transform: rotate(90deg) perspective(0); }
+  #botpause { left: 240px; }
+  #botstop { left: 300px; }
+</style>
+<script>
+  function enqueueandstart(){
+    document.getElementsByClassName('play icon')[2].parentElement.click();
+    setTimeout(function(){
+      var a = document.getElementsByClassName('play icon')[0].parentElement;
+      if (a.innerHTML.include("olive play icon")) { return; }
+      a.click();
+      console.error(a.innerHTML);
+    },100);
+}
+  function randoma() {
+    document.randomp = "1";
+    var someartist = document.getElementsByClassName("ui inverted fluid accordion")[0].lastChild.children[0];
+    someartist.click();
+    setTimeout(function(){
+      var somealbum = document.getElementsByClassName("ui inverted fluid accordion")[0].lastChild.children[1]; // album div
+      somealbum = somealbum.children[0].children[0];
+      console.error(somealbum.innerHTML);
+      somealbum.click();
+      someartist.click();
+      enqueueandstart();
+
+      setTimeout(function(){
+        enqueueandstart();
+      }, 500);
+    },100);
+
+  }
+</script>
+
+<a class="bottomaction" href="#idtitle">🔽</button>
+<a class="bottomaction" id="botload" href="javascript:enqueueandstart();">📀</button>
+<a class="bottomaction" id="botplay" href="javascript:document.getElementsByClassName('play icon')[0].parentElement.click();">🔼</button>
+<a class="bottomaction" id="botrand" href="javascript:randoma();">🎉</button>
+<a class="bottomaction" id="botpause" href="javascript:document.getElementsByClassName('pause icon')[0].parentElement.click();">⏸️</button>
+<a class="bottomaction" id="botstop" href="javascript:document.getElementsByClassName('stop icon')[0].parentElement.click();">⏹️</button>
+</body>
+</html>
